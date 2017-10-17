@@ -1,0 +1,15 @@
+mongodb:
+  image: mongo:3.0.15
+  ports:
+    - 27017:27017
+
+site:
+  image: node:8.7.0
+  command: node server.js
+  working_dir: /app
+  volumes:
+    - .:/app
+  ports:
+    - 8080:8080
+  links:
+    - mongodb:mongodb
